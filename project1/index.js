@@ -1,5 +1,8 @@
 const express = require('express')
+const bodyParser = require('body-parser')
+
 const app = express()
+app.use(bodyParser.json())
 
 const knex = require('knex')({
   client: 'mysql',
@@ -46,31 +49,37 @@ app.get('/users/:id', function(req, res) {
 
 app.post('/users', function(req, res) {
   console.log(req)
-  res.send('tst')
+  // res.json(req.body)
 
-  // knex('user').insert({
+  // {
   //   name: 'prawee',
   //   surname: 'Wongsa',
   //   birthday: '1984-10-08',
   //   email: 'prawee@hotmail.com',
   //   sex: 'male',
   //   created_at: new Date()
-  // })
-  // .then(() => res.json({ message: 'Added successfully' }))
-  // .catch(err => {
-  //   res.status(500).json({
-  //     message: 'Contact administrator.'
-  //   })
-  //   console.log(err)
-  // })
+  // }
+
+  const input = {...req.body, created_at: new Date()}
+  // const input = Object.assign(
+  //     {},
+  //     req.body,
+  //     { created_at: new Date()}
+  // )
+  knex('user').insert(input)
+  .then(() => res.json({ message: 'Added successfully' }))
+  .catch(err => {
+    res.status(500).json({
+      message: 'Contact administrator.'
+    })
+    console.log(err)
+  })
 })
 
 app.put('/users/:id', function(req, res) {
   knex('user')
     .where({ id: req.params.id })
-    .update({
-      name: 'Prawee'
-    })
+    .update(req.body)
     .then(() => res.json({ message: 'Update Successfully'}))
     .catch(err => {
       console.log(err)
