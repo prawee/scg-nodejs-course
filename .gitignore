@@ -1,2 +1,4 @@
-/project1/node_modules
+/api/node_modules
 /website/node_modules
+/adonis-web/node_modules
+/web2/node_modules
