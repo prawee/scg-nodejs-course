@@ -28,9 +28,19 @@
                     <td>{{user.birthday}}</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-primary btn-sm">View</button>
-                            <button type="button" class="btn btn-warning btn-sm">Update</button>
-                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            <a href="/users/view" class="btn btn-primary btn-sm">View</a>
+                            <a href="/users/update/{{user.id}}" class="btn btn-warning btn-sm">Update</a>
+                            <form 
+                                action="/users/delete?_method=DELETE" 
+                                method="post"
+                            >
+                                {{ csrfField() }}
+                                <input type="hidden" name="id" value={{user.id}} />
+                                <button type="submit"
+                                    class="btn btn-danger btn-sm">
+                                    Delete
+                                </button>
+                            </form>
                         </div>
                     </td>
                 </tr>

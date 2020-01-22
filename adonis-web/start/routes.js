@@ -72,12 +72,58 @@ Route.post('/users/add', ({ request, response }) => {
         })
 })
 
+//form update
+Route.get('/users/update/:id', ({ params,response, view }) => {
+    const id = params.id
+    // return response.json({ id })
+    const url = 'http://localhost:3000/users/' + id
+    // return response.json(url)
+    return Axios.get(url)
+        .then(result => {
+            console.log(result)
+            // return response.json(result.data[0])
+            if (result.status == 200)
+                // return response.json(result.data[0])
+                return view.render('users-update', {
+                    user: result.data[0]
+                })
+        })
+        .catch(err => console.log(err))
+    
+})
 //update
-Route.put('/users/update', () => {
+Route.post('/users/update', ({ request, response }) => {
+    const { id, name, surname } = request.all()
+    // return response.json({
+    //     id, name, surname
+    // })
+    const formData = {
+        name, surname
+    }
+    const url = 'http://localhost:3000/users/'+id
+    return Axios.put(url, formData)
+        .then(result => {
+            // return response.json(result.data)
+            if (result.status == 200)
+                return response.redirect('/users')
+        })
+        .catch(err => console.log(err))
 })
 
 //delete
-Route.delete('/user/delele', () => {
+Route.delete('/users/delete', ({ request, response}) => {
+    const { id } = request.all()
+    // return response.json({ id })
+    const url = `http://localhost:3000/users/${id}`
+    // return response.json({
+    //     url
+    // })
+    return Axios.delete(url)
+        .then(result => {
+            if (result.status == 200)
+                return response.redirect('/users')
+        })
+        .catch(err => console.log(err))
 })
 
 
