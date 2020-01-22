@@ -1,0 +1,22 @@
+User
+- Name (varchar(80))
+- Surname (varchar(80))
+- Birthday (date)
+- Email (varchar(120))
+- Sex (varchar(30))
+
+- CreatedAt (timestamp)
+- UpdatedAt (datetime)
+
+API
+[GET] 	/
+[GET] 	/users
+[GET] 	/users/{id}
+[POST] 	/users
+[PUT] 	/users/{id}
+[DELETE] /users/{id}
+
+
+res.send('Text')
+res.json({ message: 'xxx'  })
+res.status(500).json({ message: 'xxx'  })

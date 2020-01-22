@@ -1,0 +1,18 @@
+#list process
+pm2 list
+
+#start service
+#pm2 start "xxx" --name=yyyy
+pm2 start "node index.js" --name=api/3000
+
+#stop
+pm2 stop  
+pm2 stop 0
+
+#restart
+pm2 restart 0
+pm2 restart api/3000
+
+#delete
+pm2 stop 0
+pm2 delete 0

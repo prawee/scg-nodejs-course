@@ -1,0 +1,22 @@
+Tools
+npm i -g @adonisjs/cli
+
+Usage
+adonis new adonis-web
+
+Running
+npm start
+
+
+Routing
+/users   list all (+)
+/users/form  form
+/users/add
+/users/update
+/users/delete
+
+adonis make:view user-list
+
+Extras Tools
+Axios
+nodemon

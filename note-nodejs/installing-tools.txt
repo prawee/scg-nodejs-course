@@ -1,0 +1,17 @@
+#How to create project
+
+1. open visual studio code
+2. open folder (d:/nodejs/project1)
+2.1 open terminal
+> npm init
+
+
+MVC
+M = model (db)
+V = View
+C = Controller
+
+Tools for running process
+=========================
+1. PM2 => npm i -g pm2
+2. forever
